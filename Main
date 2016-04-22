@@ -18,6 +18,9 @@ public class Main extends JavaPlugin implements Listener
 
 	  @EventHandler
 	  public void schat(PlayerCommandPreprocessEvent e) {
+	  
+	  Player player = (Player) e.getPlayer();
+	  
 	    if (((e.getMessage().equalsIgnoreCase("/psctoggle")) && (e.getPlayer().hasPermission("psc.sc"))) || ((e.getMessage().equalsIgnoreCase("/ps")) && (e.getPlayer().hasPermission("ps.sc")))) {
 	      e.setCancelled(true);
 	      if (this.chat.contains(e.getPlayer().getName())) {
@@ -33,11 +36,11 @@ public class Main extends JavaPlugin implements Listener
 	    }
 	  }
 
-	  @EventHandler
+	  @EventHandler(priority = EventPriority.HIGH)
 	  public void schate(AsyncPlayerChatEvent e) {
 	    if (this.chat.contains(e.getPlayer().getName())) {
 	      e.setCancelled(true);
-	      Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&7&l[&c&lSTAFF&7&l] &8") + " " + ChatColor.translateAlternateColorCodes('&', "&a&l") + e.getPlayer().getName() + ChatColor.GOLD + ": " + e.getMessage());
+	      Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&7&l[&c&lSTAFF&7&l] &8") + " " + ChatColor.translateAlternateColorCodes('&', "&a&l") + e.getPlayer().getName() + ChatColor.GOLD + ": " + e.getMessage(), "psc.sc");
 	    }
 	  }
 	}
