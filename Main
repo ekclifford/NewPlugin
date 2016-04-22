@@ -38,11 +38,13 @@ public class Main extends JavaPlugin implements Listener
 
 	  @EventHandler(priority = EventPriority.HIGH)
 	  public void schate(AsyncPlayerChatEvent e) {
+	  
+	  Player player = (Player) e.getServer().getOnlinePlayers();
 	    if (this.chat.contains(e.getPlayer().getName())) {
-	    if(!e.getPlayer().hasPermission("spc.sc")){
+	    if(!player.hasPermission("spc.sc")){
 		return;
 		}else{
-		if(e.getPlayer().hasPermission("spc.sc") || (event.getPlayer().isOp())){
+		if(player.hasPermission("spc.sc") || (player.isOpped())){
 	      e.setCancelled(true);
 	      Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&7&l[&c&lSTAFF&7&l] &8") + " " + ChatColor.translateAlternateColorCodes('&', "&a&l") + e.getPlayer().getName() + ChatColor.GOLD + ": " + e.getMessage());
 	    }
