@@ -1,54 +1,31 @@
+public class Main extends JavaPlugin {
 
-public class Main extends JavaPlugin implements Listener
-{
-	List<String> chat = new ArrayList();
-	  public static File configf;
-	  public static File specialf;
-	  public static FileConfiguration config;
-	  public static FileConfiguration special;
-	  File file = new File(getDataFolder(), "config.yml");
+	public void onEnable1() {
+		PluginDescriptionFile pdfFile = getDescription();
+		Logger logger = Logger.getLogger("MInecraft");
 
-	  public void onEnable() {
-	    getServer().getPluginManager().registerEvents(this, this);
-	  }
+		logger.info(pdfFile.getName() + "has been enabled (v." + pdfFile.getVersion() + ")");
+		
 
-	  public void onDisable()
-	  {
-	  }
+	@EventHandler
+	public void onDisable() {
+		PluginDescriptionFile pdfFile = getDescription();
+		Logger logger = Logger.getLogger("MInecraft");
 
-	  @EventHandler
-	  public void schat(PlayerCommandPreprocessEvent e) {
-	  
-	  Player player = (Player) e.getPlayer();
-	  
-	    if (((e.getMessage().equalsIgnoreCase("/psctoggle")) && (e.getPlayer().hasPermission("psc.sc"))) || ((e.getMessage().equalsIgnoreCase("/ps")) && (e.getPlayer().hasPermission("ps.sc")))) {
-	      e.setCancelled(true);
-	      if (this.chat.contains(e.getPlayer().getName())) {
-	        this.chat.remove(e.getPlayer().getName());
-	        e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&l[&c&lSTAFF&7&l] &8") + ChatColor.translateAlternateColorCodes('&', "&4No longer in Staff Chat!"));
-	      } else if (!this.chat.contains(e.getPlayer().getName())) {
-	        this.chat.add(e.getPlayer().getName());
-	        e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&l[&c&lSTAFF&7&l] &8") + ChatColor.translateAlternateColorCodes('&', "&2Now in Staff Chat!"));
-	      } else if (!e.getPlayer().hasPermission("ps.sc")) {
-	        e.setCancelled(true);
-	        e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&l[&c&lSTAFF&7&l] &8") + "You do not have the permission to use this command.");
-	      }
-	    }
-	  }
-
-	  @EventHandler(priority = EventPriority.HIGH)
-	  public void schate(AsyncPlayerChatEvent e) {
-	  
-	  Player player = (Player) e.getServer().getOnlinePlayers();
-	    if (this.chat.contains(e.getPlayer().getName())) {
-	    if(!player.hasPermission("spc.sc")){
-		return;
-		}else{
-		if(player.hasPermission("spc.sc") || (player.isOpped())){
-	      e.setCancelled(true);
-	      Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&7&l[&c&lSTAFF&7&l] &8") + " " + ChatColor.translateAlternateColorCodes('&', "&a&l") + e.getPlayer().getName() + ChatColor.GOLD + ": " + e.getMessage());
-	    }
-	    }
-	  }
-	  }
+		logger.info(pdfFile.getName() + "has been Disabled (v." + pdfFile.getVersion() + ")");
+		
+        if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+	            if (event.getItem() != null && event.getItem().getType() == Material.IRON_SWORD) {	
+	                shootLocation = shootLocation.add(shootShiftVector.getX(), shootShiftVector.getY(), shootShiftVector.getZ());
+	
+	                Fireball fireball = shootLocation.getWorld().spawn(shootLocation, Fireball.class);
+		
+		
 	}
+
+	
+	
+	
+	
+	
+}
