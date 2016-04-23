@@ -1,31 +1,29 @@
-public class Main extends JavaPlugin {
+public class Main extends JavaPlugin implements Listener{  //added implements Listener
 
-	public void onEnable1() {
+	public void onEnable() { //changed from enEnable1
 		PluginDescriptionFile pdfFile = getDescription();
-		Logger logger = Logger.getLogger("MInecraft");
+		Logger logger = Logger.getLogger("Minecraft");
 
 		logger.info(pdfFile.getName() + "has been enabled (v." + pdfFile.getVersion() + ")");
 		
 
-	@EventHandler
+				//removed @EventHandler, not needed on disabling plugin
 	public void onDisable() {
-		PluginDescriptionFile pdfFile = getDescription();
-		Logger logger = Logger.getLogger("MInecraft");
-
-		logger.info(pdfFile.getName() + "has been Disabled (v." + pdfFile.getVersion() + ")");
+		} // removed the un-needed code
 		
-        if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+		@EventHandler(priority = EventPriority.HIGH) //Added event priority and event
+		public void onPlayerThrowingEvent(PlayerInteractEvent event){  //added the actual event
+        if (!event.getAction().equals(Action.RIGHT_CLICK_AIR) || !event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+        return;
+        }else{
+        	if(event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)){
 	            if (event.getItem() != null && event.getItem().getType() == Material.IRON_SWORD) {	
 	                shootLocation = shootLocation.add(shootShiftVector.getX(), shootShiftVector.getY(), shootShiftVector.getZ());
 	
 	                Fireball fireball = shootLocation.getWorld().spawn(shootLocation, Fireball.class);
-		
+		}
+		}
 		
 	}
-
-	
-	
-	
-	
 	
 }
