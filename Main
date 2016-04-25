@@ -1,7 +1,7 @@
 public class Main extends JavaPlugin implements Listener{  //added implements Listener
 
 	public void onEnable() { //changed from enEnable1
-		this.saveDefaultConfig();
+		saveDefaultConfig();
 		getLogger().info("Plugin Enabled");
 		
 	}
