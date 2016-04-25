@@ -2,7 +2,7 @@ public class Main extends JavaPlugin implements Listener{  //added implements Li
 
 	public void onEnable() { //changed from enEnable1
 		this.saveDefaultConfig();
-		logger().info("Plugin Enabled");
+		getLogger().info("Plugin Enabled");
 		
 	}
 				//removed @EventHandler, not needed on disabling plugin
